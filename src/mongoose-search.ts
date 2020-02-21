@@ -17,9 +17,13 @@ export default function mongooseSearch(schema: any): void {
       return query;
     }
     const indexFields: any = [];
+
     const fulltextIndexes = schema
-      .indexes()[0]
-      .filter((o: object) => Object.values(o).includes("text"));
+      .indexes()
+      .map((index: [Object]) =>
+        index.filter(o => Object.values(o).includes("text"))
+      )
+      .filter((index: [Object]) => index.length);
 
     if (fulltextIndexes && fulltextIndexes.length) {
       indexFields.push({ $text: { $search: str } });
@@ -48,7 +52,9 @@ export default function mongooseSearch(schema: any): void {
       });
     });
 
-    query = indexFields.length === 1 ? indexFields[0] : { $or: indexFields };
-    return query;
+    if (indexFields.length) {
+      return indexFields.length === 1 ? indexFields[0] : { $or: indexFields };
+    }
+    return {};
   };
 }
