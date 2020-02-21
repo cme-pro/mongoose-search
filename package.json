@@ -1,6 +1,6 @@
 {
   "name": "@cme-pro/mongoose-search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Mongoose schema plugin to search on multiple fields. Support search on ObjectID, Regex or Mongodb text indexes",
   "homepage": "https://github.com/cme-pro/mongoose-search#readme",
   "main": "dist/index.js",
