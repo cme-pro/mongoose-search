@@ -1,0 +1,46 @@
+{
+  "name": "@cme-pro/mongoose-search",
+  "version": "0.0.0",
+  "description": "Mongoose schema plugin to search on multiple fields. Support search on ObjectID, Regex or Mongodb text indexes",
+  "homepage": "https://github.com/cme-pro/mongoose-search#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --detectOpenHandles --forceExit",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cme-pro/mongoose-search.git"
+  },
+  "keywords": [
+    "mongoose",
+    "plugin",
+    "search",
+    "searching",
+    "mongo",
+    "mongodb"
+  ],
+  "author": {
+    "name": "Sven Gaubert",
+    "url": "https://github.com/svengau"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cme-pro/mongoose-search/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.3",
+    "@types/mongoose": "^5.5.19",
+    "fs-extra": "^8.1.0",
+    "jest": "25.1.0",
+    "mongoose": "^5.7.3",
+    "ts-jest": "25.2.1",
+    "typescript": "^3.6.3",
+    "typescript-eslint-parser": "^22.0.0"
+  },
+  "peerDependencies": {
+    "mongoose": ">= 4"
+  }
+}

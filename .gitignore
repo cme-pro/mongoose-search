@@ -1,0 +1,14 @@
+/node_modules
+/log
+/public/uploads
+/.settings
+/public/assets/mock
+/.idea
+/.coverage
+*.DS_Store
+*.log
+*.heapsnapshot
+.cache
+.history
+test/.globalConfig.json
+/dist
