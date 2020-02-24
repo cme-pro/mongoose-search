@@ -1,0 +1,16 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {},
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true,
+    "no-console": {
+      "severity": "warning"
+    },
+    "arrow-parens": true,
+    "interface-name": false,
+    "ordered-imports": false,
+    "jsx-boolean-value": false,
+    "object-literal-sort-keys": false
+  }
+}

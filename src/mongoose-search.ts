@@ -1,15 +1,12 @@
-import { Schema } from "mongoose";
-import { ObjectID } from "bson";
+import { Schema } from 'mongoose';
+import { ObjectID } from 'bson';
 
 interface SearchQueryOptions {
   fields?: object;
 }
 
-export default function mongooseSearch(schema: any): void {
-  schema.statics.searchQuery = function(
-    str: string,
-    options: SearchQueryOptions
-  ) {
+export default function mongooseSearch(schema: Schema): void {
+  schema.statics.searchQuery = (str: string, options: SearchQueryOptions) => {
     let query = {};
 
     if (ObjectID.isValid(str)) {
@@ -20,10 +17,8 @@ export default function mongooseSearch(schema: any): void {
 
     const fulltextIndexes = schema
       .indexes()
-      .map((index: [Object]) =>
-        index.filter(o => Object.values(o).includes("text"))
-      )
-      .filter((index: [Object]) => index.length);
+      .map((index: any[]) => index.filter((o: any[]) => Object.values(o).includes('text')))
+      .filter((index: any[]) => index.length);
 
     if (fulltextIndexes && fulltextIndexes.length) {
       indexFields.push({ $text: { $search: str } });
@@ -33,22 +28,19 @@ export default function mongooseSearch(schema: any): void {
     if (!searchableFields) {
       searchableFields = {};
       schema.eachPath((path: string) => {
-        if (
-          schema.paths[path].options &&
-          schema.paths[path].options.searchable
-        ) {
-          const searchable = schema.paths[path].options.searchable;
+        // @ts-ignore
+        const schemaPaths: any = schema.paths;
+
+        if (schemaPaths[path].options && schemaPaths[path].options.searchable) {
+          const searchable = schemaPaths[path].options.searchable;
           searchableFields[path] = searchable;
         }
       });
     }
 
-    Object.keys(searchableFields).map(key => {
+    Object.keys(searchableFields).map((key: string) => {
       indexFields.push({
-        [key]:
-          searchableFields[key] === true
-            ? new RegExp(`^${str}`)
-            : searchableFields[key](str)
+        [key]: searchableFields[key] === true ? new RegExp(`^${str}`) : searchableFields[key](str),
       });
     });
 
