@@ -40,7 +40,8 @@ export default function mongooseSearch(schema: Schema): void {
 
     Object.keys(searchableFields).map((key: string) => {
       indexFields.push({
-        [key]: searchableFields[key] === true ? new RegExp(`^${str}`) : searchableFields[key](str),
+        [key]:
+          searchableFields[key] === true ? new RegExp(`^${str}`, 'i') : searchableFields[key](str),
       });
     });
 
