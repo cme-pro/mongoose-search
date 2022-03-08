@@ -1,3 +1,3 @@
 import mongooseSearch from './mongoose-search';
 
-module.exports = mongooseSearch;
+export default mongooseSearch;
