@@ -44,6 +44,6 @@
     "typescript-eslint-parser": "22.0.0"
   },
   "peerDependencies": {
-    "mongoose": "6.3.3"
+    "mongoose": "6.12.7"
   }
 }
